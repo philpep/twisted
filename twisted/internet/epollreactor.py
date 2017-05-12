@@ -259,7 +259,7 @@ class EPollReactor(posixbase.PosixReactorBase, posixbase._PollLikeMixin):
                         # We appear to have some bad reactor state (see
                         # e.g. #6346) where we thought fd was in other state,
                         # but epoll disagrees. So clear it out and try again.
-                        del other[fd]
+                        other.remove(fd)
                         return self._add(xer, primary, other, selectables,
                                          event, antievent)
                     else:
